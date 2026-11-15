@@ -1,0 +1,115 @@
+export interface QuestionDefinition {
+  id: number
+  prompt: string
+  answers: string[]
+  correctAnswer: string
+  audio: string
+}
+
+export const questionBank: QuestionDefinition[] = [
+  {
+    id: 1,
+    prompt: '¿Qué género musical tiene esta canción?',
+    answers: ['Electrónica', 'Jazz', 'Pop', 'Hip Hop'],
+    correctAnswer: 'Electrónica',
+    audio: '/audio/Aylex - Turn It Louder (freetouse.com).mp3',
+  },
+  {
+    id: 2,
+    prompt: '¿De qué género es la canción está sonando?',
+    answers: ['Hip Hop', 'Rock', 'Phonk', 'Jazz'],
+    correctAnswer: 'Jazz',
+    audio: '/audio/Burgundy X - Adored (freetouse.com).mp3',
+  },
+  {
+    id: 3,
+    prompt: '¿De qué género es la canción está sonando?',
+    answers: ['Phonk', 'Trap', 'Hip Hop', 'Pop'],
+    correctAnswer: 'Phonk',
+    audio: '/audio/Walen - HEADPHONK (freetouse.com).mp3',
+  },
+  {
+    id: 4,
+    prompt: '¿De qué género es la canción está sonando?',
+    answers: ['Trap', 'Rock', 'Disco', 'Jazz'],
+    correctAnswer: 'Disco',
+    audio: '/audio/Burgundy - Flicker (freetouse.com).mp3',
+  },
+  {
+    id: 5,
+    prompt: '¿De qué género es la canción está sonando?',
+    answers: ['Electrónica', 'Phonk', 'Pop', 'Classical'],
+    correctAnswer: 'Classical',
+    audio: '/audio/Pufino - Enlivening (freetouse.com).mp3',
+  },
+  {
+    id: 6,
+    prompt: '¿Cuál era el nombre de nacimiento de Freddie Mercury?',
+    answers: ['Freddie Mercury', 'Farrokh Bulsara', 'Freddie Bulsara', 'Farrokh Mercury'],
+    correctAnswer: 'Farrokh Bulsara',
+    audio: '',
+  },
+  {
+    id: 7,
+    prompt: '¿En qué ciudad nació Freddie Mercury?',
+    answers: ['Londres', 'Stone Town', 'Zanzíbar', 'Liverpool'],
+    correctAnswer: 'Stone Town',
+    audio: '',
+  },
+  {
+    id: 8,
+    prompt: '¿Qué integrante de Queen tocaba la guitarra?',
+    answers: ['John Deacon', 'Roger Taylor', 'Brian May', 'Freddie Mercury'],
+    correctAnswer: 'Brian May',
+    audio: '',
+  },
+  {
+    id: 9,
+    prompt: '¿Quién era el baterista de Queen?',
+    answers: ['Roger Taylor', 'Brian May', 'John Deacon', 'Freddie Mercury'],
+    correctAnswer: 'Roger Taylor',
+    audio: '',
+  },
+  {
+    id: 10,
+    prompt: '¿Qué álbum de Queen se publicó en 1975?',
+    answers: ['A Night at the Opera', 'News of the World', 'The Game', 'Jazz'],
+    correctAnswer: 'A Night at the Opera',
+    audio: '',
+  },
+  {
+    id: 11,
+    prompt: '¿En qué año se formó Queen?',
+    answers: ['1966', '1970', '1975', '1980'],
+    correctAnswer: '1970',
+    audio: '',
+  },
+  {
+    id: 12,
+    prompt: '¿Qué instrumento tocaba John Deacon en Queen?',
+    answers: ['Bajo', 'Batería', 'Guitarra', 'Teclado'],
+    correctAnswer: 'Bajo',
+    audio: '',
+  },
+  {
+    id: 13,
+    prompt: '¿Cuál fue el primer álbum de estudio de Queen?',
+    answers: ['Queen', 'A Night at the Opera', 'The Game', 'Jazz'],
+    correctAnswer: 'Queen',
+    audio: '',
+  },
+  {
+    id: 14,
+    prompt: '¿Cómo se llamaba el grupo de Brian May y Roger Taylor antes de Queen?',
+    answers: ['Smile', 'The Cross', 'Bad News', 'The Hectics'],
+    correctAnswer: 'Smile',
+    audio: '',
+  },
+  {
+    id: 15,
+    prompt: '¿Quién diseñó el escudo del logotipo de Queen?',
+    answers: ['Freddie Mercury', 'Brian May', 'Roger Taylor', 'John Deacon'],
+    correctAnswer: 'Freddie Mercury',
+    audio: '',
+  },
+]
