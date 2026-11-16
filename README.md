@@ -1,6 +1,6 @@
 # Melodía
 
-Concurso musical de una sola página, desarrollado con Vue 3, TypeScript, Vue Router y Pinia.
+Concurso musical de una sola página, desarrollado con Vue 3, JavaScript, Vue Router y Pinia.
 
 ## Cómo se juega
 
@@ -13,13 +13,12 @@ Concurso musical de una sola página, desarrollado con Vue 3, TypeScript, Vue Ro
 
 ## Añadir preguntas y canciones
 
-Las preguntas están en `src/data/questions.ts`. Cada pregunta guarda juntas sus opciones,
+Las preguntas están en `src/data/questions.js`. Cada pregunta guarda juntas sus opciones,
 la respuesta correcta y el campo `audio`. Deja `audio: ''` para una pregunta sin música; el
 reproductor no se mostrará.
 
 Para usar un MP3, crea `public/audio/` y copia allí tu archivo. En la pregunta escribe su ruta
-desde `public`, por ejemplo `audio: '/audio/cancion.mp3'`. Las melodías actuales usan claves
-`synth:...` y se generan en el navegador.
+desde `public`, por ejemplo `audio: '/audio/cancion.mp3'`. Las preguntas sin audio usan `audio: ''`.
 
 Durante una pregunta con audio puedes pausar, reanudar o parar la reproducción.
 

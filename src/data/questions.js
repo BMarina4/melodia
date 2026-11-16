@@ -1,12 +1,4 @@
-export interface QuestionDefinition {
-  id: number
-  prompt: string
-  answers: string[]
-  correctAnswer: string
-  audio: string
-}
-
-export const questionBank: QuestionDefinition[] = [
+export const questionBank = [
   {
     id: 1,
     prompt: '¿Qué género musical tiene esta canción?',

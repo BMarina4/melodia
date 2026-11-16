@@ -59,7 +59,7 @@
   </main>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import PageHeading from '../components/PageHeading.vue'
@@ -67,12 +67,12 @@ import { useCompetitionStore } from '../stores/competition'
 
 const store = useCompetitionStore()
 const leaderboard = computed(() => store.leaderboard)
-function formattedTime(seconds: number) {
+function formattedTime(seconds) {
   const minutes = Math.floor(seconds / 60)
   return `${minutes}:${String(seconds % 60).padStart(2, '0')}`
 }
 
-function formattedDate(value: string) {
+function formattedDate(value) {
   return new Intl.DateTimeFormat('es-ES', {
     day: '2-digit',
     month: 'short',

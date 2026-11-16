@@ -45,16 +45,16 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { computed, onUnmounted, ref, watch } from 'vue'
 import { pauseAudio, playAudio, resumeAudio, stopAudio } from '../utils/audio'
 
-const props = defineProps<{
-  source: string
-  canPlay: boolean
-}>()
+const props = defineProps({
+  source: { type: String, required: true },
+  canPlay: { type: Boolean, required: true },
+})
 
-const status = ref<'idle' | 'playing' | 'paused'>('idle')
+const status = ref('idle')
 const errorMessage = ref('')
 const playButtonLabel = computed(() => {
   if (status.value === 'playing') return 'Pausar'

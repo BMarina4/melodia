@@ -2,38 +2,14 @@ import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import { questionBank } from '../data/questions'
 
-export interface QuestionChoice {
-  id: string
-  label: string
-}
-
-export interface MusicQuestion {
-  id: number
-  prompt: string
-  choices: QuestionChoice[]
-  answerId: string
-  answerLabel: string
-  audio: string
-}
-
-export interface ScoreEntry {
-  id: string
-  name: string
-  points: number
-  correctAnswers: number
-  accuracy: number
-  durationSeconds: number
-  createdAt: string
-}
-
 const STORAGE_KEY = 'melodia:ranking:v3'
 const QUESTION_COUNT = 15
 const ROUND_SECONDS = 15
 
-function isScoreEntry(value: unknown): value is ScoreEntry {
+function isScoreEntry(value) {
   if (typeof value !== 'object' || value === null) return false
 
-  const entry = value as Record<string, unknown>
+  const entry = value
   return (
     typeof entry.id === 'string' &&
     typeof entry.name === 'string' &&
@@ -45,7 +21,7 @@ function isScoreEntry(value: unknown): value is ScoreEntry {
   )
 }
 
-function sortScores(scores: ScoreEntry[]) {
+function sortScores(scores) {
   return [...scores].sort(
     (first, second) =>
       second.points - first.points ||
@@ -54,18 +30,18 @@ function sortScores(scores: ScoreEntry[]) {
   )
 }
 
-function shuffled<T>(items: T[]) {
+function shuffled(items) {
   const result = [...items]
   for (let index = result.length - 1; index > 0; index -= 1) {
     const swapIndex = Math.floor(Math.random() * (index + 1))
-    const current = result[index]!
-    result[index] = result[swapIndex]!
+    const current = result[index]
+    result[index] = result[swapIndex]
     result[swapIndex] = current
   }
   return result
 }
 
-function createQuestions(): MusicQuestion[] {
+function createQuestions() {
   return shuffled(questionBank).map((question) => {
     const choices = shuffled(question.answers).map((label) => ({
       id: label,
@@ -85,17 +61,17 @@ function createQuestions(): MusicQuestion[] {
 
 export const useCompetitionStore = defineStore('competition', () => {
   const playerName = ref('')
-  const phase = ref<'intro' | 'playing' | 'feedback' | 'finished'>('intro')
-  const questions = ref<MusicQuestion[]>([])
+  const phase = ref('intro')
+  const questions = ref([])
   const currentQuestionIndex = ref(0)
   const points = ref(0)
   const correctAnswers = ref(0)
   const elapsedSeconds = ref(0)
   const timeRemaining = ref(ROUND_SECONDS)
-  const lastAnswer = ref<number | null>(null)
+  const lastAnswer = ref(null)
   const lastAnswerWasCorrect = ref(false)
-  const leaderboard = ref<ScoreEntry[]>([])
-  const lastResult = ref<ScoreEntry | null>(null)
+  const leaderboard = ref([])
+  const lastResult = ref(null)
   const storageMessage = ref('')
 
   function loadScores() {
@@ -103,7 +79,7 @@ export const useCompetitionStore = defineStore('competition', () => {
       const saved = localStorage.getItem(STORAGE_KEY)
       if (!saved) return []
 
-      const parsed: unknown = JSON.parse(saved)
+      const parsed = JSON.parse(saved)
       if (!Array.isArray(parsed) || !parsed.every(isScoreEntry)) {
         throw new Error('El formato guardado no es válido.')
       }
@@ -136,7 +112,7 @@ export const useCompetitionStore = defineStore('competition', () => {
     return index === -1 ? 0 : index + 1
   })
 
-  function startGame(name: string) {
+  function startGame(name) {
     const normalizedName = name.trim()
     if (!normalizedName) return
 
@@ -153,7 +129,7 @@ export const useCompetitionStore = defineStore('competition', () => {
     phase.value = 'playing'
   }
 
-  function submitAnswer(answerIndex: number | null) {
+  function submitAnswer(answerIndex) {
     const question = currentQuestion.value
     if (phase.value !== 'playing' || !question) return
     if (
@@ -184,7 +160,7 @@ export const useCompetitionStore = defineStore('competition', () => {
   function finishGame() {
     if (phase.value !== 'feedback') return
 
-    const result: ScoreEntry = {
+    const result = {
       id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
       name: playerName.value,
       points: points.value,

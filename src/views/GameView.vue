@@ -177,7 +177,7 @@
   </main>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { computed, onUnmounted, ref, watch } from 'vue'
 import { RouterLink } from 'vue-router'
 import AnswerOptions from '../components/AnswerOptions.vue'
@@ -188,7 +188,7 @@ import { useCompetitionStore } from '../stores/competition'
 const store = useCompetitionStore()
 const playerNameInput = ref('')
 const formError = ref('')
-let timer: ReturnType<typeof setInterval> | undefined
+let timer
 
 const currentQuestion = computed(() => store.currentQuestion)
 const resultMedal = computed(() => {
@@ -202,7 +202,7 @@ const resultMessage = computed(() => {
   return '¡Sigue practicando!'
 })
 
-function formattedTime(seconds: number) {
+function formattedTime(seconds) {
   const minutes = Math.floor(seconds / 60)
   const remaining = String(seconds % 60).padStart(2, '0')
   return `${minutes}:${remaining}`
@@ -229,7 +229,7 @@ function playAgain() {
 }
 
 watch(
-  () => [store.phase, store.currentQuestionIndex] as const,
+  () => [store.phase, store.currentQuestionIndex],
   ([phase]) => {
     if (timer) clearInterval(timer)
     if (phase === 'playing') {

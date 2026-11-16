@@ -26,18 +26,14 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import type { QuestionChoice } from '../stores/competition'
+<script setup>
+defineProps({
+  choices: { type: Array, required: true },
+  phase: { type: String, required: true },
+  answerId: { type: String, required: true },
+  selectedIndex: { type: Number, default: null },
+  wasAnswerCorrect: { type: Boolean, required: true },
+})
 
-defineProps<{
-  choices: QuestionChoice[]
-  phase: 'playing' | 'feedback'
-  answerId: string
-  selectedIndex: number | null
-  wasAnswerCorrect: boolean
-}>()
-
-defineEmits<{
-  select: [index: number]
-}>()
+defineEmits(['select'])
 </script>
